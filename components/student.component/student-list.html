@@ -1,0 +1,20 @@
+<h2>School Information</h2>
+
+<div class="a-table">
+	<div class="a-header-row">
+		<span class="a-cell">Name</span>
+		<span class="a-cell">Age</span>
+		<span class="a-cell">Gender</span>
+		<span class="a-cell">Sport</span>
+		<span class="a-cell">Edit</span>
+		<span class="a-cell">Remove</span>
+	</div>
+	<div class="a-row" ng-repeat="student in $ctrl.list">
+		<span class="a-cell" ng-repeat="(key, value) in student" ng-if="key !== 'id'">{{student[key]}}</span>
+		<span class="a-cell"><button ng-click="$ctrl.selectStudent(student)">Edit</button></span>
+		<span class="a-cell"><button ng-click="$ctrl.delete(student.id)">Remove</button></span>
+	</div>
+</div>
+<button ng-click="$ctrl.showAddForm()">Add Student</button>
+<edit-student student="$ctrl.selected" ng-hide="!$ctrl.editMode" on-update="$ctrl.updatelist(studentupd)"></edit-student>
+<add-student ng-hide="!$ctrl.addMode" on-update="$ctrl.storeStudent(student)"></add-student>

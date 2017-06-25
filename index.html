@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AngularJs sample project</title>
+<style>
+	#main {
+		width: 1264px;
+		margin: 0 auto;
+		display: block;
+	}
+	.a-table {
+		display: table;
+	}
+	.a-row, .a-header-row {
+		display: table-row;
+	}
+	.a-header-row {
+		font-weight: bold;
+	}
+	.a-cell {
+		display: table-cell;
+		padding: 0 20px;
+	}
+</style>
+</head>
+
+<body ng-app="myApp">
+<student-list id="main"></student-list>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+<script>var app = angular.module('myApp', []);</script>
+<script src="components/student.component/student-list.js"></script>
+<script src="components/student.component/edit-student.js"></script>
+<script src="components/student.component/add-student.js"></script>
+<script src="components/student.directive/student-form-directives.js"></script>
+<script></script>
+<script></script>
+</body>
+
+</html> 
