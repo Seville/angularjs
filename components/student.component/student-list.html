@@ -1,20 +1,25 @@
-<h2>School Information</h2>
-
-<div class="a-table">
-	<div class="a-header-row">
-		<span class="a-cell">Name</span>
-		<span class="a-cell">Age</span>
-		<span class="a-cell">Gender</span>
-		<span class="a-cell">Sport</span>
-		<span class="a-cell">Edit</span>
-		<span class="a-cell">Remove</span>
+<div class="container main">
+	<h2>School Information</h2>
+	<div class="row h-row">
+		<span class="col-lg-1 h-cell">Name</span>
+		<span class="col-lg-1 h-cell">Age</span>
+		<span class="col-lg-1 h-cell">Gender</span>
+		<span class="col-lg-1 h-cell">Sport</span>
+		<span class="col-lg-1 h-cell">Edit</span>
+		<span class="col-lg-1 h-cell">Remove</span>
 	</div>
-	<div class="a-row" ng-repeat="student in $ctrl.list">
-		<span class="a-cell" ng-repeat="(key, value) in student" ng-if="key !== 'id'">{{student[key]}}</span>
-		<span class="a-cell"><button ng-click="$ctrl.selectStudent(student)">Edit</button></span>
-		<span class="a-cell"><button ng-click="$ctrl.delete(student.id)">Remove</button></span>
+	<div class="row t-row" ng-repeat="student in $ctrl.list">
+		<span class="col-lg-1 t-cell" ng-repeat="(key, value) in student" ng-if="key !== 'id'">{{student[key]}}</span>
+		<span class="col-lg-1 t-cell"><button class="btn btn-warning" ng-click="$ctrl.selectStudent(student)">Edit</button></span>
+		<span class="col-lg-1 t-cell"><button class="btn btn-danger" ng-click="$ctrl.delete(student.id)">Remove</button></span>
 	</div>
 </div>
-<button ng-click="$ctrl.showAddForm()">Add Student</button>
-<edit-student student="$ctrl.selected" ng-hide="!$ctrl.editMode" on-update="$ctrl.updatelist(studentupd)"></edit-student>
-<add-student ng-hide="!$ctrl.addMode" on-update="$ctrl.storeStudent(student)"></add-student>
+<div class="container">
+	<div class="row">
+		<button class="btn btn-primary" ng-click="$ctrl.showAddForm()">Add Student</button>
+	</div>
+	<div class="row">
+		<edit-student student="$ctrl.selected" ng-hide="!$ctrl.editMode" on-update="$ctrl.updatelist(studentupd)"></edit-student>
+		<add-student ng-hide="!$ctrl.addMode" on-update="$ctrl.storeStudent(student)"></add-student>
+	</div>
+</div>

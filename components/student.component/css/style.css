@@ -1,0 +1,31 @@
+.main {
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+.main h2 {
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+.form-group label {
+	display: block;
+}
+.error-msg{
+	color: red;
+}
+.h-row {
+	font-weight: bold;
+    margin: 10px 0;
+}
+.t-cell {
+    padding-left: 0;
+    padding-right: 0;
+}
+.t-row {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+.input-box {
+	
+}
