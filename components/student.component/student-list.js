@@ -35,7 +35,6 @@ function StudentListController($scope, $element, $attrs){
 		ctrl.list.some((ele, index, arry) => {
 			if(ele.id == studentup.id){
 				arry[index] = studentup;
-				return true;
 			}
 		});
 		ctrl.editMode = false;
