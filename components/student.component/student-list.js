@@ -1,19 +1,15 @@
-function StudentListController($scope, $element, $attrs){
+function StudentListController($http, $window, CRUDUtil){
 	var ctrl = this;
 	
 	ctrl.$onInit = () => {
 		ctrl.editMode = false;
 		ctrl.addMode = false;
 		ctrl.selected = {};
+		
+		CRUDUtil.getStudents().then(function(resObj){
+			ctrl.list = resObj.data.students;
+		});
 	};
-
-	// Mock student data
-	ctrl.list = [
-		{id: 1, name: 'Jason', age: 12, gender: 'male', sport: 'basketball'},
-		{id: 2, name: 'Linda', age: 14, gender: 'female', sport: 'soccer'},
-		{id: 3, name: 'Tom', age: 13, gender: 'male', sport: 'baseball'},
-		{id: 4, name: 'Alicia', age: 11, gender: 'female', sport: 'football'}
-	];
 	
 	ctrl.selectStudent = (student) => {
 		ctrl.editMode = true;
@@ -24,9 +20,14 @@ function StudentListController($scope, $element, $attrs){
 		ctrl.addMode = true;
 	};
 	
+	//add student record
 	ctrl.storeStudent = (student) => {
 		student.id = ctrl.list.length+1;
-		ctrl.list.push(ctrl.convertToObject(student));
+		ctrl.list.push(ctrl.convertToObject(student))
+		CRUDUtil.updateList(ctrl.list).then(function(resObj){
+			alert('Student record stored successfully!');
+		});
+		
 		ctrl.addMode = false;
 	};
 	
@@ -35,6 +36,9 @@ function StudentListController($scope, $element, $attrs){
 		ctrl.list.some((ele, index, arry) => {
 			if(ele.id == studentup.id){
 				arry[index] = studentup;
+				CRUDUtil.updateList(arry).then(function(resObj){
+					alert('Edit successful!');
+				});
 			}
 		});
 		ctrl.editMode = false;
@@ -42,9 +46,15 @@ function StudentListController($scope, $element, $attrs){
 	
 	//delete student record
 	ctrl.delete = (id) => {
-		ctrl.list = ctrl.list.filter((ele, index, arry) => {
-			return ele.id !== id;
-		});
+		var confirmDel = confirm("Are you sure you want to delete this record?");
+		if(confirmDel){
+			ctrl.list = ctrl.list.filter((ele, index, arry) => {
+				return ele.id !== id;
+			});
+			CRUDUtil.updateList(ctrl.list).then(function(resObj){
+				alert('Delete successful!');
+			});
+		}
 	};
 	
 	//convert map to object and empty value assignment
@@ -53,7 +63,7 @@ function StudentListController($scope, $element, $attrs){
 		for(var [key, value] of student){
 			stdObj[key] = value;
 		}
-		if(stdObj.sport !== null || stdObj.sport.trim() == ""){
+		if(stdObj.sport == null || stdObj.sport.trim() == ""){
 			stdObj.sport = "N/A";
 		}
 		return stdObj;
@@ -63,5 +73,5 @@ function StudentListController($scope, $element, $attrs){
 
 app.component('studentList', {
 	templateUrl: 'components/student.component/student-list.html',
-	controller: StudentListController
+	controller: ['$http', '$window', 'CRUDUtil', StudentListController]
 });

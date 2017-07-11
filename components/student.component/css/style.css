@@ -1,9 +1,7 @@
 .main {
-    border: 1px solid black;
     margin-bottom: 10px;
 }
 .main h2 {
-    text-decoration: underline;
     margin-bottom: 20px;
 }
 .form-group label {
@@ -15,6 +13,11 @@
 .h-row {
 	font-weight: bold;
     margin: 10px 0;
+	border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+.h-cell {
+	
 }
 .t-cell {
     padding-left: 0;
