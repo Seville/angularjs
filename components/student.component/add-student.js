@@ -5,14 +5,14 @@ function AddStudentController($scope, $element, $attrs){
 		ctrl.newStudentObj = {};
 	};
 	
-	ctrl.addStudent = () => {
+	ctrl.addStudent = (evt) => {
+		debugger;
 		ctrl.onUpdate({student: ctrl.ensureOrder(ctrl.newStudentObj)});
 		ctrl.newStudentObj = {};
 	};
 	
 	//To ensure object insertion order use map object;
 	ctrl.ensureOrder = (studentObj) => {
-		debugger;
 		var mapObj = new Map();
 		mapObj.set('name', studentObj.name);
 		mapObj.set('age', studentObj.age);
